@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Hospital - Animation Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .demo-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .animation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .animation-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .animation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .demo-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body class="premium-healthcare-theme">
+    <div class="section-container">
+        <div class="demo-section">
+            <h1 class="section-title">Nova Hospital Animation Demo</h1>
+            <p class="section-description">Test करें सभी premium animations और effects</p>
+            
+            <div class="animation-grid">
+                <!-- Basic Animations -->
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-slide-up')">
+                    <i class="fas fa-arrow-up" style="font-size: 2rem; color: #667eea; margin-bottom: 20px;"></i>
+                    <h3>Slide Up</h3>
+                    <p>Element slides up from bottom</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-slide-down')">
+                    <i class="fas fa-arrow-down" style="font-size: 2rem; color: #667eea; margin-bottom: 20px;"></i>
+                    <h3>Slide Down</h3>
+                    <p>Element slides down from top</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-zoom-in')">
+                    <i class="fas fa-search-plus" style="font-size: 2rem; color: #667eea; margin-bottom: 20px;"></i>
+                    <h3>Zoom In</h3>
+                    <p>Element zooms in with scale effect</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-bounce')">
+                    <i class="fas fa-basketball-ball" style="font-size: 2rem; color: #667eea; margin-bottom: 20px;"></i>
+                    <h3>Bounce</h3>
+                    <p>Element bounces into view</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-flip-x')">
+                    <i class="fas fa-sync-alt" style="font-size: 2rem; color: #667eea; margin-bottom: 20px;"></i>
+                    <h3>Flip X</h3>
+                    <p>Element flips on X axis</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-flip-y')">
+                    <i class="fas fa-exchange-alt" style="font-size: 2rem; color: #667eea; margin-bottom: 20px;"></i>
+                    <h3>Flip Y</h3>
+                    <p>Element flips on Y axis</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <!-- Continuous Animations -->
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-heartbeat')">
+                    <i class="fas fa-heartbeat" style="font-size: 2rem; color: #e53e3e; margin-bottom: 20px;"></i>
+                    <h3>Heartbeat</h3>
+                    <p>Continuous heartbeat effect</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-morphing')">
+                    <i class="fas fa-shapes" style="font-size: 2rem; color: #667eea; margin-bottom: 20px;"></i>
+                    <h3>Morphing</h3>
+                    <p>Shape morphing animation</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-glow')">
+                    <i class="fas fa-sun" style="font-size: 2rem; color: #f59e0b; margin-bottom: 20px;"></i>
+                    <h3>Glow Effect</h3>
+                    <p>Glowing light effect</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-shimmer')">
+                    <i class="fas fa-star" style="font-size: 2rem; color: #8b5cf6; margin-bottom: 20px;"></i>
+                    <h3>Shimmer</h3>
+                    <p>Light shimmer across element</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-rubber')">
+                    <i class="fas fa-hand-rock" style="font-size: 2rem; color: #10b981; margin-bottom: 20px;"></i>
+                    <h3>Rubber Band</h3>
+                    <p>Elastic rubber band effect</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+                
+                <div class="animation-card" onclick="triggerAnimation(this, 'animate-wave')">
+                    <i class="fas fa-water" style="font-size: 2rem; color: #06b6d4; margin-bottom: 20px;"></i>
+                    <h3>Wave</h3>
+                    <p>Floating wave motion</p>
+                    <button class="demo-button">Test Animation</button>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px;">
+                <h3>Control Panel</h3>
+                <button class="demo-button" onclick="resetAllAnimations()">Reset All Animations</button>
+                <button class="demo-button" onclick="triggerSequenceAnimation()">Sequence Animation</button>
+                <button class="demo-button" onclick="triggerStaggerAnimation()">Stagger Animation</button>
+            </div>
+            
+            <!-- Statistics Demo -->
+            <div style="margin-top: 60px; padding: 40px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h3>Statistics Counter Demo</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 30px;">
+                    <div class="stat-demo">
+                        <div class="stat-number" style="font-size: 3rem; font-weight: 800; color: #667eea;">
+                            <span class="counter" data-count="1500">0</span>+
+                        </div>
+                        <p>Patients Served</p>
+                    </div>
+                    <div class="stat-demo">
+                        <div class="stat-number" style="font-size: 3rem; font-weight: 800; color: #e53e3e;">
+                            <span class="counter" data-count="98">0</span>%
+                        </div>
+                        <p>Success Rate</p>
+                    </div>
+                    <div class="stat-demo">
+                        <div class="stat-number" style="font-size: 3rem; font-weight: 800; color: #10b981;">
+                            <span class="counter" data-count="25">0</span>+
+                        </div>
+                        <p>Doctors</p>
+                    </div>
+                </div>
+                <button class="demo-button" onclick="resetCounters()" style="margin-top: 20px;">Reset Counters</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function triggerAnimation(element, animationClass) {
+            // Remove any existing animation classes
+            element.className = element.className.replace(/animate-\w+/g, '');
+            
+            // Force reflow
+            element.offsetHeight;
+            
+            // Add new animation class
+            element.classList.add(animationClass);
+            
+            // Remove animation class after completion to allow re-triggering
+            setTimeout(() => {
+                element.classList.remove(animationClass);
+            }, 2000);
+        }
+        
+        function resetAllAnimations() {
+            const cards = document.querySelectorAll('.animation-card');
+            cards.forEach(card => {
+                card.className = 'animation-card';
+            });
+        }
+        
+        function triggerSequenceAnimation() {
+            const cards = document.querySelectorAll('.animation-card');
+            const animations = ['animate-slide-up', 'animate-zoom-in', 'animate-bounce', 'animate-flip-x'];
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+                    triggerAnimation(card, randomAnimation);
+                }, index * 200);
+            });
+        }
+        
+        function triggerStaggerAnimation() {
+            const cards = document.querySelectorAll('.animation-card');
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    triggerAnimation(card, 'animate-slide-up');
+                }, index * 100);
+            });
+        }
+        
+        function resetCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                counter.textContent = '0';
+                animateCounter(counter, target);
+            });
+        }
+        
+        function animateCounter(element, target) {
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+            
+            updateCounter();
+        }
+        
+        // Auto-start counters
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                resetCounters();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

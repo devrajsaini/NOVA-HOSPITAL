@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Hospital - Live Location Tracking Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .demo-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        
+        .demo-description {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #10b981;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card.live-tracking .feature-icon {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            animation: livePulse 3s infinite;
+        }
+        
+        .feature-card.interactive-map .feature-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .feature-card.real-time .feature-icon {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+        
+        .status-ready {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .status-active {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            animation: statusPulse 2s infinite;
+        }
+        
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .demo-actions {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .demo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            margin: 0 10px 10px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .demo-btn.primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .demo-btn.secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .technical-specs {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .spec-item {
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+        
+        .spec-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .spec-value {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="premium-healthcare-theme">
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1 class="demo-title">
+                <i class="fas fa-location-dot" style="color: #10b981;"></i>
+                Live Location Tracking Demo
+            </h1>
+            <p class="demo-description">
+                Experience real-time location tracking, interactive maps, and live navigation features for Nova Hospital. 
+                Get precise directions, track your journey, and never get lost finding premium healthcare.
+            </p>
+        </div>
+
+        <!-- Feature Grid -->
+        <div class="feature-grid">
+            <div class="feature-card live-tracking">
+                <div class="status-indicator status-ready">
+                    <i class="fas fa-circle" style="font-size: 8px;"></i>
+                    Ready to Track
+                </div>
+                <div class="feature-icon">
+                    <i class="fas fa-location-arrow"></i>
+                </div>
+                <h3>Live Location Tracking</h3>
+                <p>Real-time GPS tracking with continuous position updates. Get accurate distance calculations and live coordinates to Nova Hospital.</p>
+                <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                    <li><i class="fas fa-check" style="color: #10b981; margin-right: 8px;"></i>High accuracy GPS</li>
+                    <li><i class="fas fa-check" style="color: #10b981; margin-right: 8px;"></i>Real-time distance calculation</li>
+                    <li><i class="fas fa-check" style="color: #10b981; margin-right: 8px;"></i>Continuous location updates</li>
+                    <li><i class="fas fa-check" style="color: #10b981; margin-right: 8px;"></i>Battery optimized tracking</li>
+                </ul>
+                <button class="demo-btn primary" onclick="trackLiveLocation()">
+                    <i class="fas fa-location-arrow"></i>
+                    Start Live Tracking
+                </button>
+            </div>
+
+            <div class="feature-card interactive-map">
+                <div class="status-indicator status-ready">
+                    <i class="fas fa-circle" style="font-size: 8px;"></i>
+                    Interactive Ready
+                </div>
+                <div class="feature-icon">
+                    <i class="fas fa-map"></i>
+                </div>
+                <h3>Interactive Live Map</h3>
+                <p>Full-screen interactive map with real-time navigation controls, route display, and hospital location highlighting.</p>
+                <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                    <li><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Full-screen embedded map</li>
+                    <li><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Route visualization</li>
+                    <li><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Hospital location pinpoint</li>
+                    <li><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Touch-friendly controls</li>
+                </ul>
+                <button class="demo-btn secondary" onclick="showLiveMap()">
+                    <i class="fas fa-map"></i>
+                    Open Live Map
+                </button>
+            </div>
+
+            <div class="feature-card real-time">
+                <div class="status-indicator status-ready">
+                    <i class="fas fa-circle" style="font-size: 8px;"></i>
+                    Navigation Ready
+                </div>
+                <div class="feature-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3>Real-Time Navigation</h3>
+                <p>Turn-by-turn navigation with Google Maps integration, live traffic updates, and multiple route options.</p>
+                <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                    <li><i class="fas fa-check" style="color: #f59e0b; margin-right: 8px;"></i>Turn-by-turn directions</li>
+                    <li><i class="fas fa-check" style="color: #f59e0b; margin-right: 8px;"></i>Live traffic updates</li>
+                    <li><i class="fas fa-check" style="color: #f59e0b; margin-right: 8px;"></i>Multiple route options</li>
+                    <li><i class="fas fa-check" style="color: #f59e0b; margin-right: 8px;"></i>Voice-guided navigation</li>
+                </ul>
+                <button class="demo-btn primary" onclick="startNavigation()">
+                    <i class="fas fa-route"></i>
+                    Start Navigation
+                </button>
+            </div>
+        </div>
+
+        <!-- Demo Actions -->
+        <div class="demo-actions">
+            <h3 style="margin-bottom: 20px; color: #374151;">Try All Features</h3>
+            <button class="demo-btn primary" onclick="demoAllFeatures()">
+                <i class="fas fa-rocket"></i>
+                Demo All Features
+            </button>
+            <a href="index.html" class="demo-btn secondary">
+                <i class="fas fa-home"></i>
+                Back to Main Website
+            </a>
+            <a href="maps-demo.html" class="demo-btn secondary">
+                <i class="fas fa-map-marked-alt"></i>
+                View Maps Demo
+            </a>
+        </div>
+
+        <!-- Technical Specifications -->
+        <div class="technical-specs">
+            <h3 style="color: #374151; margin-bottom: 16px;">
+                <i class="fas fa-cogs" style="color: #10b981; margin-right: 10px;"></i>
+                Technical Specifications
+            </h3>
+            <p style="color: #6b7280; margin-bottom: 20px;">
+                Our live tracking system uses advanced web technologies for precise location services.
+            </p>
+            
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Location Accuracy</div>
+                    <div class="spec-value">±5-10 meters</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Update Frequency</div>
+                    <div class="spec-value">Real-time (1-3 seconds)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Battery Optimization</div>
+                    <div class="spec-value">High efficiency mode</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Map Provider</div>
+                    <div class="spec-value">Google Maps API</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Supported Browsers</div>
+                    <div class="spec-value">Chrome, Firefox, Safari, Edge</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Mobile Support</div>
+                    <div class="spec-value">iOS, Android optimized</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hospital Info -->
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%); padding: 30px; border-radius: 20px; margin-top: 30px; text-align: center; border: 2px solid rgba(16, 185, 129, 0.2);">
+            <h3 style="color: #059669; margin-bottom: 15px;">
+                <i class="fas fa-hospital-symbol" style="margin-right: 10px;"></i>
+                Nova Hospital Location
+            </h3>
+            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0;">
+                <strong>Address:</strong> Noorpur - Amroha Road, Village Milak, Badshahpur<br>
+                <strong>District:</strong> Naugawan Sadat, Uttar Pradesh, India<br>
+                <strong>Emergency Hotline:</strong> 9105106999<br>
+                <strong>Services:</strong> 24/7 Emergency Care, OPD, Pharmacy, Laboratory
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Demo-specific functionality
+        function demoAllFeatures() {
+            showNotification('Starting comprehensive demo...', 'info');
+            
+            // Step 1: Start location tracking
+            setTimeout(() => {
+                trackLiveLocation();
+            }, 1000);
+            
+            // Step 2: Show live map after 3 seconds
+            setTimeout(() => {
+                showLiveMap();
+            }, 4000);
+            
+            showNotification('Demo sequence initiated! Follow the prompts.', 'success');
+        }
+
+        // Enhanced notification for demo
+        function showNotification(message, type = 'info', duration = 4000) {
+            const existing = document.querySelector('.demo-notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = `demo-notification demo-notification-${type}`;
+            notification.innerHTML = `
+                <div class="demo-notification-content">
+                    <i class="fas fa-${getNotificationIcon(type)}"></i>
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: inherit; margin-left: 10px; cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            // Add enhanced styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10001;
+                padding: 16px 20px;
+                border-radius: 12px;
+                color: white;
+                font-weight: 600;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                transform: translateX(400px);
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                max-width: 400px;
+                backdrop-filter: blur(10px);
+            `;
+            
+            // Type-specific styling
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+            } else if (type === 'error') {
+                notification.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+            } else if (type === 'warning') {
+                notification.style.background = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)';
+            } else {
+                notification.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }
+            
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+            
+            // Auto remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, duration);
+        }
+        
+        function getNotificationIcon(type) {
+            const icons = {
+                'success': 'check-circle',
+                'error': 'exclamation-circle', 
+                'warning': 'exclamation-triangle',
+                'info': 'info-circle'
+            };
+            return icons[type] || 'info-circle';
+        }
+
+        // Initialize demo
+        console.log('🚀 Nova Hospital Live Tracking Demo Loaded');
+        console.log('📍 Features: Real-time GPS tracking, Interactive maps, Live navigation');
+        console.log('🏥 Hospital: Noorpur - Amroha Road, Village Milak, Badshahpur, UP');
+        
+        // Show welcome notification
+        setTimeout(() => {
+            showNotification('Welcome to Nova Hospital Live Tracking Demo! Try the features above.', 'success', 6000);
+        }, 1000);
+    </script>
+</body>
+</html>

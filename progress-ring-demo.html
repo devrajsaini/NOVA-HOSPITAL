@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Ring with Center Icons - Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .demo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .demo-item {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .demo-title {
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+        }
+    </style>
+</head>
+<body class="premium-healthcare-theme">
+    <div class="section-container">
+        <div style="text-align: center; padding: 40px 0;">
+            <h1 class="section-title">Progress Ring Center Icons Demo</h1>
+            <p class="section-description">Different medical icons के साथ progress rings</p>
+        </div>
+
+        <div class="demo-container">
+            <!-- Heartbeat Icon -->
+            <div class="demo-item">
+                <h3 class="demo-title">Heartbeat Icon</h3>
+                <div class="stat-visual">
+                    <div class="stat-chart">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle
+                                    class="progress-circle-bg"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="#bbb"
+                                    stroke-width="10"
+                                />
+                                <circle
+                                    class="progress-circle"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="url(#gradient1)"
+                                    stroke-width="10"
+                                    stroke-dasharray="314"
+                                    stroke-dashoffset="31"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                            <div class="progress-text">
+                                <i class="fas fa-heartbeat progress-icon"></i>
+                                <span class="percentage">98%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hospital Cross -->
+            <div class="demo-item">
+                <h3 class="demo-title">Hospital Cross</h3>
+                <div class="stat-visual">
+                    <div class="stat-chart">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle
+                                    class="progress-circle-bg"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="#bbb"
+                                    stroke-width="10"
+                                />
+                                <circle
+                                    class="progress-circle"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="url(#gradient1)"
+                                    stroke-width="10"
+                                    stroke-dasharray="314"
+                                    stroke-dashoffset="94"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                            <div class="progress-text">
+                                <i class="fas fa-plus progress-icon"></i>
+                                <span class="percentage">70%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stethoscope -->
+            <div class="demo-item">
+                <h3 class="demo-title">Stethoscope</h3>
+                <div class="stat-visual">
+                    <div class="stat-chart">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle
+                                    class="progress-circle-bg"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="#bbb"
+                                    stroke-width="10"
+                                />
+                                <circle
+                                    class="progress-circle"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="url(#gradient1)"
+                                    stroke-width="10"
+                                    stroke-dasharray="314"
+                                    stroke-dashoffset="157"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                            <div class="progress-text">
+                                <i class="fas fa-stethoscope progress-icon"></i>
+                                <span class="percentage">50%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User MD -->
+            <div class="demo-item">
+                <h3 class="demo-title">Doctor Icon</h3>
+                <div class="stat-visual">
+                    <div class="stat-chart">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle
+                                    class="progress-circle-bg"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="#bbb"
+                                    stroke-width="10"
+                                />
+                                <circle
+                                    class="progress-circle"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="url(#gradient1)"
+                                    stroke-width="10"
+                                    stroke-dasharray="314"
+                                    stroke-dashoffset="125"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                            <div class="progress-text">
+                                <i class="fas fa-user-md progress-icon"></i>
+                                <span class="percentage">60%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ambulance -->
+            <div class="demo-item">
+                <h3 class="demo-title">Ambulance</h3>
+                <div class="stat-visual">
+                    <div class="stat-chart">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle
+                                    class="progress-circle-bg"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="#bbb"
+                                    stroke-width="10"
+                                />
+                                <circle
+                                    class="progress-circle"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="url(#gradient1)"
+                                    stroke-width="10"
+                                    stroke-dasharray="314"
+                                    stroke-dashoffset="62"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                            <div class="progress-text">
+                                <i class="fas fa-ambulance progress-icon"></i>
+                                <span class="percentage">80%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shield (Safety) -->
+            <div class="demo-item">
+                <h3 class="demo-title">Safety Shield</h3>
+                <div class="stat-visual">
+                    <div class="stat-chart">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="120" height="120">
+                                <circle
+                                    class="progress-circle-bg"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="#bbb"
+                                    stroke-width="10"
+                                />
+                                <circle
+                                    class="progress-circle"
+                                    cx="60" cy="60" r="50"
+                                    fill="transparent"
+                                    stroke="url(#gradient1)"
+                                    stroke-width="10"
+                                    stroke-dasharray="314"
+                                    stroke-dashoffset="15"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                            <div class="progress-text">
+                                <i class="fas fa-shield-alt progress-icon"></i>
+                                <span class="percentage">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; padding: 40px;">
+            <h3>Current Selection: Heartbeat Icon (98%)</h3>
+            <p style="color: #6b7280; margin-top: 10px;">
+                यह icon Patient Satisfaction Rate के लिए perfect है क्योंकि यह healthcare और life को represent करता है।
+            </p>
+        </div>
+    </div>
+
+    <!-- SVG Gradients -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#4c63d2"/>
+                <stop offset="50%" style="stop-color:#667eea"/>
+                <stop offset="100%" style="stop-color:#764ba2"/>
+            </linearGradient>
+        </defs>
+    </svg>
+</body>
+</html>
