@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <defs>
+    <!-- Perfect Nova Hospital Colors from Your Image -->
+    <linearGradient id="handsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4c4"/>
+      <stop offset="50%" style="stop-color:#00bcd4"/>
+      <stop offset="100%" style="stop-color:#0097a7"/>
+    </linearGradient>
+    
+    <linearGradient id="crossMainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a365d"/>
+      <stop offset="50%" style="stop-color:#2c5282"/>
+      <stop offset="100%" style="stop-color:#3182ce"/>
+    </linearGradient>
+    
+    <linearGradient id="crossLightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4299e1"/>
+      <stop offset="50%" style="stop-color:#3182ce"/>
+      <stop offset="100%" style="stop-color:#2c5282"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Caring Hands - Perfect Shape from Your Image -->
+  <g>
+    <!-- Left Hand -->
+    <path d="M35 128 Q20 118 15 138 Q10 158 25 168 L60 188 Q75 198 85 183 Q90 168 75 158 L50 143 Q40 133 35 128 Z" 
+          fill="url(#handsGradient)"/>
+    
+    <!-- Right Hand -->
+    <path d="M165 128 Q180 118 185 138 Q190 158 175 168 L140 188 Q125 198 115 183 Q110 168 125 158 L150 143 Q160 133 165 128 Z" 
+          fill="url(#handsGradient)"/>
+  </g>
+  
+  <!-- Medical Cross with Stethoscope - Exact from Your Image -->
+  <g transform="translate(100,88)">
+    <!-- Cross Background -->
+    <rect x="-25" y="-45" width="50" height="90" rx="15" fill="url(#crossMainGradient)"/>
+    <rect x="-45" y="-25" width="90" height="50" rx="15" fill="url(#crossMainGradient)"/>
+    
+    <!-- Cross Foreground -->
+    <rect x="-23" y="-43" width="46" height="86" rx="13" fill="url(#crossLightGradient)"/>
+    <rect x="-43" y="-23" width="86" height="46" rx="13" fill="url(#crossLightGradient)"/>
+    
+    <!-- Stethoscope White Design - Exact Pattern -->
+    <g fill="#ffffff" stroke="#ffffff">
+      <!-- Stethoscope ear pieces -->
+      <path d="M-22 -40 Q-34 -30 -24 -20 Q-20 -17 -17 -20" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M22 -40 Q34 -30 24 -20 Q20 -17 17 -20" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+      
+      <!-- Stethoscope tube connection -->
+      <path d="M-17 -20 Q-10 -12 0 -10 Q10 -12 17 -20" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+      
+      <!-- Chest piece -->
+      <circle cx="0" cy="15" r="11" fill="#ffffff"/>
+      <circle cx="0" cy="15" r="7" fill="url(#crossMainGradient)"/>
+    </g>
+  </g>
+  
+  <!-- NOVA HOSPITAL Text - Perfect Typography -->
+  <text x="100" y="185" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" 
+        font-size="52" fill="#1a365d" letter-spacing="-3px">NOVA</text>
+  <text x="100" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-weight="600" 
+        font-size="30" fill="#00bcd4" letter-spacing="10px">HOSPITAL</text>
+</svg>

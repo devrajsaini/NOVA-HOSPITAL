@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="premium-healthcare-theme">
-    <!-- Advanced Animated Background -->
+    <!-- Simple Animated Background -->
     <div class="animated-background">
         <div class="floating-particles">
             <div class="particle"></div>
@@ -24,30 +24,14 @@
         </div>
     </div>
     
-    <!-- Premium Header with Glassmorphism -->
+    <!-- Premium Header -->
     <header class="premium-header">
         <div class="header-container">
             <div class="header-content">
                 <div class="premium-logo">
-                    <!-- Premium Combination Logo (Default) -->
-                    <div class="logo-gradient-bg nova-logo-combo">
-                        <div class="logo-content">
-                            <span class="logo-letter-small">N</span>
-                            <i class="fas fa-heartbeat logo-icon-small"></i>
-                        </div>
+                    <div class="professional-logo-container">
+                        <img src="nova-logo.svg" alt="Nova Hospital Logo" class="professional-logo">
                     </div>
-                    
-                    <!-- Alternative Logo Options (uncomment to use) -->
-                    <!-- Letter N Logo -->
-                    <!-- <div class="logo-gradient-bg nova-logo-improved">
-                        <span class="logo-letter">N</span>
-                    </div> -->
-                    
-                    <!-- Medical Symbol Logo -->
-                    <!-- <div class="logo-gradient-bg nova-logo-medical">
-                        <i class="fas fa-heartbeat logo-icon"></i>
-                    </div> -->
-                    
                     <div class="logo-text">
                         <h2>Nova Hospital</h2>
                         <span class="tagline">Healthcare Excellence</span>
@@ -86,8 +70,7 @@
             </div>
         </div>
     </header>
-
-    <!-- Premium Hero Section - Visuo Style -->
+    <!-- Hero Section -->
     <section id="home" class="premium-hero">
         <div class="hero-bg-effects">
             <div class="gradient-orb orb-1"></div>
@@ -98,12 +81,9 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <div class="hero-badge">
-                        <i class="fas fa-award"></i>
-                        <span>Trusted Healthcare Since 2010</span>
-                    </div>
+
                     
-                    <h1 class="hero-title" data-typewriter="true">
+                    <h1 class="hero-title">
                         Transform Your
                         <span class="gradient-text">Health Journey</span>
                         With Premium Care
@@ -152,9 +132,9 @@
                         <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Modern Hospital Interior" class="hero-image">
                         
                         <!-- Floating Stats Cards -->
-                        <div class="floating-stat stat-1 animate-particle-float">
+                        <div class="floating-stat stat-1">
                             <div class="stat-icon">
-                                <i class="fas fa-heartbeat animate-heartbeat"></i>
+                                <i class="fas fa-heartbeat"></i>
                             </div>
                             <div class="stat-content">
                                 <h4>98%</h4>
@@ -162,7 +142,7 @@
                             </div>
                         </div>
                         
-                        <div class="floating-stat stat-2 animate-particle-float">
+                        <div class="floating-stat stat-2">
                             <div class="stat-icon">
                                 <i class="fas fa-users"></i>
                             </div>
@@ -172,9 +152,9 @@
                             </div>
                         </div>
                         
-                        <div class="floating-stat stat-3 animate-particle-float">
+                        <div class="floating-stat stat-3">
                             <div class="stat-icon">
-                                <i class="fas fa-hospital animate-glow"></i>
+                                <i class="fas fa-hospital"></i>
                             </div>
                             <div class="stat-content">
                                 <h4>50+</h4>
@@ -208,8 +188,7 @@
             </div>
         </div>
     </section>
-
-    <!-- Our Workflow Section - Visuo Inspired -->
+    <!-- Our Workflow Section -->
     <section id="workflow" class="workflow-section">
         <div class="section-container">
             <div class="section-header">
@@ -259,7 +238,8 @@
             </div>
         </div>
     </section>
-    <!-- Premium Services Section - Visuo Card Style -->
+
+    <!-- Premium Services Section -->
     <section id="services" class="premium-services">
         <div class="section-container">
             <div class="section-header centered">
@@ -351,7 +331,7 @@
                 </div>
                 
                 <!-- Emergency & Trauma Care -->
-                <div class="service-card-premium emergency-card">
+                <div class="service-card-premium">
                     <div class="service-icon-premium emergency">
                         <i class="fas fa-ambulance"></i>
                     </div>
@@ -376,17 +356,17 @@
                 </div>
             </div>
             
-            <!-- Enhanced Services CTA -->
-            <div class="services-cta-section enhanced-cta">
+            <!-- Services CTA -->
+            <div class="services-cta-section">
                 <div class="cta-content-premium">
                     <h3>🏥 Ready to Experience Premium Healthcare?</h3>
                     <p>Connect with our specialists and begin your journey to better health with Nova Hospital's comprehensive medical services.</p>
                     <div class="cta-buttons-premium">
-                        <button class="cta-button primary large enhanced-btn">
+                        <button class="cta-button primary large">
                             <i class="fas fa-calendar-check"></i>
                             Book Appointment Now
                         </button>
-                        <button class="cta-button secondary large enhanced-btn-secondary">
+                        <button class="cta-button secondary large">
                             <i class="fas fa-phone-alt"></i>
                             Call: 9105106999
                         </button>
@@ -395,8 +375,7 @@
             </div>
         </div>
     </section>
-
-    <!-- Statistics Section - Visuo Style -->
+    <!-- Statistics Section -->
     <section id="statistics" class="statistics-section">
         <div class="section-container">
             <div class="section-header">
@@ -417,19 +396,25 @@
                                         class="progress-circle-bg"
                                         cx="60" cy="60" r="50"
                                         fill="transparent"
-                                        stroke="#bbb"
-                                        stroke-width="10"
+                                        stroke="#ddd"
+                                        stroke-width="8"
                                     />
                                     <circle
                                         class="progress-circle"
                                         cx="60" cy="60" r="50"
                                         fill="transparent"
                                         stroke="url(#gradient1)"
-                                        stroke-width="10"
+                                        stroke-width="8"
                                         stroke-dasharray="314"
                                         stroke-dashoffset="31"
                                         stroke-linecap="round"
                                     />
+                                    <defs>
+                                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
                                 </svg>
                                 <div class="progress-text">
                                     <span class="percentage">98%</span>
@@ -494,107 +479,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section - Premium Style -->
-    <section class="testimonials-section">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Testimonials</span>
-                <h2 class="section-title">
-                    What Our Patients Are
-                    <span class="gradient-text">Saying About Us</span>
-                </h2>
-                <p class="section-description">
-                    Real experiences from patients who have received exceptional care at Nova Hospital. 
-                    Their stories reflect our commitment to healthcare excellence.
-                </p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card-premium">
-                    <div class="testimonial-header">
-                        <div class="patient-avatar">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Rajesh Kumar">
-                        </div>
-                        <div class="patient-info">
-                            <h4>Rajesh Kumar</h4>
-                            <span class="patient-type">Cardiac Patient</span>
-                        </div>
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <p>
-                            "Nova Hospital's cardiology team saved my life. The advanced cath lab and expert care I received during my emergency heart procedure was exceptional. The doctors and staff were incredibly supportive throughout my recovery."
-                        </p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <span class="service-used">Interventional Cardiology</span>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card-premium">
-                    <div class="testimonial-header">
-                        <div class="patient-avatar">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616c829e7d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Priya Sharma">
-                        </div>
-                        <div class="patient-info">
-                            <h4>Priya Sharma</h4>
-                            <span class="patient-type">New Mother</span>
-                        </div>
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <p>
-                            "I had an amazing experience during my pregnancy and delivery at Nova Hospital. The gynecology team provided excellent prenatal care, and the delivery process was smooth and comfortable. Highly recommend their maternity services."
-                        </p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <span class="service-used">Maternity & Women's Health</span>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card-premium">
-                    <div class="testimonial-header">
-                        <div class="patient-avatar">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Amit Singh">
-                        </div>
-                        <div class="patient-info">
-                            <h4>Amit Singh</h4>
-                            <span class="patient-type">Orthopedic Patient</span>
-                        </div>
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <p>
-                            "After my knee replacement surgery at Nova Hospital, I'm back to my active lifestyle. The orthopedic team was professional, and the post-surgery rehabilitation program helped me recover faster than expected."
-                        </p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <span class="service-used">Orthopedics & Joint Care</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section - Premium Style -->
+    <!-- Contact Section -->
     <section id="contact" class="contact-section-premium">
         <div class="section-container">
             <div class="section-header">
@@ -604,106 +489,75 @@
                     <span class="gradient-text">Health Journey?</span>
                 </h2>
                 <p class="section-description">
-                    Connect with Nova Hospital for appointments, emergency services, or healthcare consultations. 
-                    We're here to provide exceptional medical care at Village Milak, Badshahpur.
+                    Connect with Nova Hospital and begin your journey to better health. We're here to provide 
+                    exceptional healthcare services with compassion and expertise.
                 </p>
             </div>
             
-            <div class="contact-grid-premium">
-                <div class="contact-info-premium">
-                    <div class="contact-card-premium">
-                        <div class="contact-icon-premium location">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details-premium">
-                            <h4>Hospital Location</h4>
-                            <p>Nova Hospital<br>
-                            Noorpur - Amroha Road<br>
-                            Village Milak, Badshahpur<br>
-                            Naugawan Sadat, Uttar Pradesh</p>
-                            
-                            <button class="contact-action-btn" onclick="getDirections()">
-                                <i class="fas fa-directions"></i>
-                                Get Directions
-                            </button>
-                        </div>
+            <div class="contact-info-premium">
+                <div class="contact-card-premium">
+                    <div class="contact-icon-premium">
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    
-                    <div class="contact-card-premium">
-                        <div class="contact-icon-premium phone">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-details-premium">
-                            <h4>Phone Numbers</h4>
-                            <p>Emergency: <strong>9105106999</strong><br>
-                            Appointments: <strong>9105106999</strong><br>
-                            General Inquiry: <strong>9105106999</strong></p>
-                            <button class="contact-action-btn">
-                                <i class="fas fa-phone"></i>
-                                Call Now
-                            </button>
-                        </div>
+                    <div class="contact-details-premium">
+                        <h4>Hospital Location</h4>
+                        <p>Noorpur - Amroha Road, Village Milak<br>Badshahpur, Naugawan Sadat, UP</p>
+                        <button class="contact-action-btn" onclick="getDirections()">
+                            <i class="fas fa-route"></i>
+                            Get Directions
+                        </button>
                     </div>
-                    
-                    <div class="contact-card-premium">
-                        <div class="contact-icon-premium time">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-details-premium">
-                            <h4>Operating Hours</h4>
-                            <p>Emergency Services: <strong>24/7</strong><br>
-                            OPD Consultations: <strong>24/7</strong><br>
-                            Pharmacy: <strong>24/7</strong></p>
-                            <button class="contact-action-btn">
-                                <i class="fas fa-calendar-plus"></i>
-                                Book Appointment
-                            </button>
-                        </div>
+                </div>
+                
+                <div class="contact-card-premium">
+                    <div class="contact-icon-premium">
+                        <i class="fas fa-phone-alt"></i>
                     </div>
-                    
-                    <div class="contact-card-premium">
-                        <div class="contact-icon-premium email">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details-premium">
-                            <h4>Email Contact</h4>
-                            <p>General: info@novahospital.com<br>
-                            Appointments: appointments@novahospital.com<br>
-                            Emergency: emergency@novahospital.com</p>
-                            <button class="contact-action-btn">
-                                <i class="fas fa-envelope"></i>
-                                Send Email
-                            </button>
-                        </div>
+                    <div class="contact-details-premium">
+                        <h4>Emergency & Appointments</h4>
+                        <p>24/7 Emergency Services<br>General Appointments Available</p>
+                        <button class="contact-action-btn" onclick="window.open('tel:9105106999')">
+                            <i class="fas fa-phone"></i>
+                            Call: 9105106999
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="contact-card-premium">
+                    <div class="contact-icon-premium">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details-premium">
+                        <h4>Operating Hours</h4>
+                        <p>Emergency: 24/7 Available<br>OPD: 8:00 AM - 10:00 PM</p>
+                        <button class="contact-action-btn">
+                            <i class="fas fa-calendar"></i>
+                            Schedule Visit
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Emergency banner removed as requested -->
-    <!-- Premium Footer -->
+    <!-- Footer -->
     <footer class="premium-footer">
         <div class="footer-container">
-            <div class="footer-main">
+            <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="premium-logo footer-logo">
-                        <div class="logo-gradient-bg nova-logo-combo">
-                            <div class="logo-content">
-                                <span class="logo-letter-small">N</span>
-                                <i class="fas fa-heartbeat logo-icon-small"></i>
-                            </div>
+                    <div class="footer-logo">
+                        <div class="professional-logo-container footer-logo-size">
+                            <img src="nova-logo.svg" alt="Nova Hospital Logo" class="professional-logo">
                         </div>
-                        <div class="logo-text">
-                            <h2>Nova Hospital</h2>
-                            <span class="tagline">Healthcare Excellence</span>
+                        <div class="brand-info">
+                            <h3>Nova Hospital</h3>
+                            <span>Healthcare Excellence</span>
                         </div>
                     </div>
                     <p class="footer-description">
-                        Nova Hospital is committed to delivering world-class healthcare services with 
-                        compassion, expertise, and cutting-edge medical technology for the well-being of our community.
+                        Leading healthcare facility providing comprehensive medical services with 
+                        state-of-the-art technology and expert medical professionals.
                     </p>
-                    <!-- Social media buttons removed as requested -->
                 </div>
                 
                 <div class="footer-links">
@@ -711,9 +565,8 @@
                         <h4>Quick Links</h4>
                         <ul>
                             <li><a href="#home">Home</a></li>
-                            <li><a href="#workflow">Our Process</a></li>
                             <li><a href="#services">Services</a></li>
-                            <li><a href="#statistics">About</a></li>
+                            <li><a href="#workflow">Our Process</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
@@ -721,21 +574,20 @@
                     <div class="footer-section">
                         <h4>Medical Services</h4>
                         <ul>
-                            <li><a href="#services">Cardiology</a></li>
                             <li><a href="#services">Emergency Care</a></li>
+                            <li><a href="#services">Cardiology</a></li>
                             <li><a href="#services">Neurology</a></li>
                             <li><a href="#services">Orthopedics</a></li>
-                            <li><a href="#services">Pediatrics</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-section">
                         <h4>Contact Info</h4>
                         <ul>
-                            <li><i class="fas fa-map-marker-alt"></i> Noorpur - Amroha Road, Badshahpur</li>
-                            <li><i class="fas fa-phone-alt"></i> 9105106999</li>
-                            <li><i class="fas fa-envelope"></i> info@novahospital.com</li>
-                            <li><i class="fas fa-clock"></i> 24/7 Emergency Services</li>
+                            <li><span>Noorpur - Amroha Road</span></li>
+                            <li><span>Village Milak, Badshahpur</span></li>
+                            <li><span>Emergency: 9105106999</span></li>
+                            <li><span>24/7 Available</span></li>
                         </ul>
                     </div>
                 </div>
@@ -743,41 +595,15 @@
             
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2026 HIMALYA NEXTGEN Technologies PVT LTD. All rights reserved. | Nova Hospital - Noorpur Amroha Road, Village Milak, Badshahpur</p>
-                    <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Medical Disclaimer</a>
+                    <p>&copy; 2026 HIMALYA NEXTGEN Technologies PVT LTD. All rights reserved.</p>
+                    <div class="footer-emergency">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Emergency: 9105106999</span>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Premium WhatsApp Float Button -->
-    <div class="whatsapp-float-premium">
-        <button class="whatsapp-btn">
-            <i class="fab fa-whatsapp"></i>
-        </button>
-        <div class="whatsapp-tooltip">
-            <span>Chat with us on WhatsApp</span>
-        </div>
-    </div>
-
-    <!-- Premium SVG Definitions -->
-    <svg width="0" height="0" style="position: absolute;">
-        <defs>
-            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#4c63d2"/>
-                <stop offset="50%" style="stop-color:#667eea"/>
-                <stop offset="100%" style="stop-color:#764ba2"/>
-            </linearGradient>
-            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#667eea"/>
-                <stop offset="100%" style="stop-color:#764ba2"/>
-            </linearGradient>
-        </defs>
-    </svg>
 
     <script src="script.js"></script>
 </body>
