@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeWhatsAppIntegration();
     initializeHeaderEffects();
     initializeMobileNavigation();
-    initializeServiceInteractions();
+    initializeDoctorInteractions();
     initializeFormInteractions();
     initializeSmoothScrolling();
     
@@ -43,12 +43,12 @@ function initializeScrollEffects() {
     }, observerOptions);
     
     // Observe all premium sections
-    document.querySelectorAll('.workflow-section, .premium-services, .statistics-section, .contact-section-premium').forEach(section => {
+    document.querySelectorAll('.workflow-section, .expert-doctors-section, .statistics-section, .contact-section-premium').forEach(section => {
         observer.observe(section);
     });
     
     // Observe individual cards for stagger effect
-    document.querySelectorAll('.workflow-step, .service-card-premium, .stat-card-premium, .contact-card-premium').forEach(card => {
+    document.querySelectorAll('.workflow-step, .doctor-card-premium, .stat-card-premium, .contact-card-premium').forEach(card => {
         observer.observe(card);
     });
 }
@@ -100,79 +100,102 @@ function initializeProgressRings() {
     };
 }
 
-// Enhanced Google Maps Directions with Auto Location
+// Enhanced Google Maps Directions with Better Fallback
 function getDirections() {
+    // First, try to get user location with a shorter timeout
     if (navigator.geolocation) {
+        const options = {
+            enableHighAccuracy: false,
+            timeout: 5000,
+            maximumAge: 60000
+        };
+        
         navigator.geolocation.getCurrentPosition(
             function(position) {
                 // Success - got user location
                 const userLat = position.coords.latitude;
                 const userLng = position.coords.longitude;
                 
-                // Nova Hospital coordinates (approximate)
+                // Nova Hospital location
                 const hospitalLocation = "Nova Hospital, Noorpur - Amroha Road, Village Milak, Badshahpur, Naugawan Sadat, UP";
                 
                 // Create Google Maps direction URL with user's current location
                 const directionsUrl = `https://www.google.com/maps/dir/${userLat},${userLng}/${encodeURIComponent(hospitalLocation)}`;
                 
-                // Open in same tab for better mobile experience
-                window.open(directionsUrl, '_self');
+                // Open Google Maps in new tab
+                window.open(directionsUrl, '_blank');
                 
                 console.log('🗺️ Directions opened with user location');
             },
             function(error) {
-                // Error getting location - show fallback
-                let errorMessage = 'Unable to get your location. ';
-                
-                switch(error.code) {
-                    case error.PERMISSION_DENIED:
-                        errorMessage += 'Location access denied by user.';
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        errorMessage += 'Location information unavailable.';
-                        break;
-                    case error.TIMEOUT:
-                        errorMessage += 'Location request timed out.';
-                        break;
-                    default:
-                        errorMessage += 'Unknown error occurred.';
-                        break;
-                }
-                
-                console.log('🗺️ Location error:', errorMessage);
-                
-                // Fallback - open Google Maps with hospital search
-                const hospitalLocation = "Nova Hospital, Noorpur - Amroha Road, Village Milak, Badshahpur, Naugawan Sadat, UP";
-                const fallbackUrl = `https://www.google.com/maps/search/${encodeURIComponent(hospitalLocation)}`;
-                window.open(fallbackUrl, '_self');
-            }
+                // Location failed - use improved fallback
+                console.log('🗺️ Location detection failed, using smart fallback');
+                openDirectionsWithoutLocation();
+            },
+            options
         );
     } else {
-        // Geolocation not supported
-        console.log('🗺️ Geolocation not supported by this browser');
-        
-        // Fallback - open Google Maps with hospital search
-        const hospitalLocation = "Nova Hospital, Noorpur - Amroha Road, Village Milak, Badshahpur, Naugawan Sadat, UP";
-        const fallbackUrl = `https://www.google.com/maps/search/${encodeURIComponent(hospitalLocation)}`;
-        window.open(fallbackUrl, '_self');
+        // Geolocation not supported - use fallback
+        console.log('🗺️ Geolocation not supported, using fallback');
+        openDirectionsWithoutLocation();
     }
+}
+
+// Smart fallback function that works without precise location
+function openDirectionsWithoutLocation() {
+    // Open Google Maps with Nova Hospital as destination
+    // This will prompt user to enter their location or use "My Location"
+    const hospitalLocation = "Nova Hospital, Noorpur - Amroha Road, Village Milak, Badshahpur, Naugawan Sadat, UP";
+    
+    // Different fallback URLs to try
+    const fallbackUrls = [
+        // Option 1: Open directions interface where user can set their location
+        `https://www.google.com/maps/dir/Current+Location/${encodeURIComponent(hospitalLocation)}`,
+        
+        // Option 2: Open hospital location with directions button
+        `https://www.google.com/maps/place/${encodeURIComponent(hospitalLocation)}`,
+        
+        // Option 3: Open hospital search with directions
+        `https://www.google.com/maps/search/${encodeURIComponent(hospitalLocation)}`
+    ];
+    
+    // Try the first fallback option
+    window.open(fallbackUrls[0], '_blank');
+    
+    // Show user a helpful message
+    console.log('🗺️ Opening Google Maps - you can set your location there for directions');
+}
+
+// Open Hospital Location in Google Maps
+function openInGoogleMaps() {
+    const hospitalLocation = "Nova Hospital, Noorpur - Amroha Road, Village Milak, Badshahpur, Naugawan Sadat, UP";
+    const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(hospitalLocation)}`;
+    window.open(mapsUrl, '_blank');
+    console.log('🗺️ Opening hospital location in Google Maps');
 }
 // Enhanced WhatsApp Integration
 function initializeWhatsAppIntegration() {
-    const whatsappButtons = document.querySelectorAll('.cta-button, .service-button, .contact-action-btn');
+    // Exclude Get Directions button from WhatsApp integration
+    const whatsappButtons = document.querySelectorAll('.cta-button, .doctor-cta-btn, .contact-action-btn:not([onclick*="getDirections"])');
     
     whatsappButtons.forEach(button => {
         button.addEventListener('click', function(e) {
+            const buttonText = this.textContent.trim().toLowerCase();
+            
+            // Skip if it's Get Directions button
+            if (buttonText.includes('direction') || buttonText.includes('get directions')) {
+                return; // Let the original onclick handle it
+            }
+            
             e.preventDefault();
             
             let message = '';
-            const buttonText = this.textContent.trim().toLowerCase();
             
             // Determine message based on button context
-            if (buttonText.includes('emergency') || this.classList.contains('emergency-cta-btn')) {
+            if (buttonText.includes('emergency') || this.classList.contains('emergency')) {
                 message = createEmergencyMessage();
-            } else if (this.closest('.service-card-premium')) {
-                message = createServiceMessage(this.closest('.service-card-premium'));
+            } else if (this.closest('.doctor-card-premium')) {
+                message = createDoctorConsultationMessage(this.closest('.doctor-card-premium'));
             } else {
                 message = createGeneralAppointmentMessage();
             }
@@ -240,6 +263,51 @@ Badshahpur, Naugawan Sadat, UP
 ⚡ IMMEDIATE RESPONSE REQUIRED ⚡
 
 Please dispatch emergency team/ambulance immediately.`;
+}
+
+function createDoctorConsultationMessage(doctorCard) {
+    const doctorName = doctorCard.querySelector('h3')?.textContent || 'Doctor';
+    const specialty = doctorCard.querySelector('.doctor-specialty')?.textContent || 'Medical Specialist';
+    const credentials = doctorCard.querySelector('.credential')?.textContent || 'Medical Professional';
+    const experience = doctorCard.querySelector('.experience')?.textContent || 'Experienced';
+    const specializations = Array.from(doctorCard.querySelectorAll('.specialization'))
+        .map(spec => spec.textContent.trim())
+        .slice(0, 3)
+        .join(', ');
+
+    return `🩺 **DOCTOR CONSULTATION REQUEST**
+
+Hello Nova Hospital Team,
+
+I would like to book a consultation with ${doctorName}.
+
+👨‍⚕️ **DOCTOR DETAILS:**
+• Name: ${doctorName}
+• Specialty: ${specialty}
+• Qualifications: ${credentials}
+• Experience: ${experience}
+• Specializations: ${specializations}
+
+📋 **APPOINTMENT REQUEST:**
+• Patient name: [Your name]
+• Contact number: [Your number]
+• Preferred date: [Date preference]
+• Preferred time: [Time preference]
+• Medical concern: [Brief description]
+• Previous medical records: [Yes/No]
+
+💼 **CONSULTATION REQUIREMENTS:**
+• Consultation fees and payment modes
+• Required documents to bring
+• Appointment confirmation
+• Hospital location and directions
+• Any preparation instructions
+
+📍 **HOSPITAL:** Nova Hospital, Noorpur - Amroha Road, Village Milak, Badshahpur
+📞 **CONTACT:** 9105106999
+
+Please confirm ${doctorName}'s availability and provide appointment details.
+Thank you!`;
 }
 
 function createServiceMessage(serviceCard) {
@@ -338,16 +406,24 @@ function initializeMobileNavigation() {
     }
 }
 
-// Service Card Interactions
-function initializeServiceInteractions() {
-    const serviceCards = document.querySelectorAll('.service-card-premium');
+// Doctor Card Interactions
+function initializeDoctorInteractions() {
+    const doctorCards = document.querySelectorAll('.doctor-card-premium');
     
-    serviceCards.forEach(card => {
+    doctorCards.forEach(card => {
         // Add click tracking
         card.addEventListener('click', function(e) {
             if (!e.target.closest('button') && !e.target.closest('a')) {
-                const serviceName = this.querySelector('h3')?.textContent;
-                console.log(`Service card clicked: ${serviceName}`);
+                const doctorName = this.querySelector('h3')?.textContent;
+                console.log(`Doctor card clicked: ${doctorName}`);
+            }
+        });
+        
+        // Add hover effect for consultation badge
+        card.addEventListener('mouseenter', function() {
+            const badge = this.querySelector('.consultation-badge');
+            if (badge) {
+                badge.style.transform = 'translateY(0)';
             }
         });
     });
@@ -364,6 +440,7 @@ function initializeFormInteractions() {
             const action = this.textContent.toLowerCase();
             
             if (action.includes('direction')) {
+                // Only open Google Maps, not WhatsApp
                 getDirections();
             } else if (action.includes('call')) {
                 window.open('tel:9105106999');
