@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Hospital - Department Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="premium-healthcare-theme">
+    <!-- Premium Header -->
+    <header class="premium-header">
+        <div class="header-container">
+            <div class="header-content">
+                <a href="index.html" style="text-decoration: none;">
+                    <div class="premium-logo">
+                        <div class="professional-logo-container">
+                            <img src="logo.jpeg" alt="Nova Hospital Logo" class="professional-logo">
+                        </div>
+                        <div class="logo-text">
+                            <h2>Nova Hospital</h2>
+                        </div>
+                    </div>
+                </a>
+                
+                <nav class="premium-nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html#home" class="nav-link">HOME</a></li>
+                        <li><a href="index.html#statistics" class="nav-link">ABOUT</a></li>
+                        <li><a href="index.html#services" class="nav-link">SERVICES</a></li>
+                        <li><a href="index.html#departments" class="nav-link">DEPARTMENTS</a></li>
+                        <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="emergency-info">
+                        <i class="fas fa-phone-alt emergency-icon"></i>
+                        <div class="emergency-text">
+                            <span class="emergency-label">Emergency</span>
+                            <strong class="emergency-number">9105106999</strong>
+                        </div>
+                    </div>
+                    <button class="cta-button primary" onclick="window.location.href='index.html#contact'">
+                        <i class="fas fa-calendar-plus"></i>
+                        Book Appointment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" style="padding-top: 80px;">
+        <!-- Dynamic Content Will Be Injected Here -->
+        <div id="details-container"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-container">
+            <div class="footer-trusted">
+                TRUSTED BY 50,000+ PATIENTS · 250+ DOCTORS & SPECIALISTS
+            </div>
+            
+            <div class="footer-content-new">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="professional-logo-container footer-logo-size">
+                            <img src="logo.jpeg" alt="Nova Hospital Logo" class="professional-logo">
+                        </div>
+                        <div class="brand-info">
+                            <h3 style="font-size: 20px; font-weight: 700;">Nova <span style="color: #0ea5e9;">Hospital</span></h3>
+                            <p class="brand-subtitle" style="font-size: 12px; opacity: 0.7; margin-top: 5px;">Multi Speciality Hospital</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-links-grid">
+                    <div class="footer-section">
+                        <h4>QUICK LINKS</h4>
+                        <ul>
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#statistics">About</a></li>
+                            <li><a href="index.html#services">Services</a></li>
+                            <li><a href="index.html#departments">Departments</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>DEPARTMENTS</h4>
+                        <ul>
+                            <li><a href="details.html?id=cardiology-center">Cardiology</a></li>
+                            <li><a href="details.html?id=neurology-institute">Neurology</a></li>
+                            <li><a href="details.html?id=orthopedic-care">Orthopedics</a></li>
+                            <li><a href="details.html?id=emergency-trauma">Emergency Care</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section contact-section">
+                        <h4>CONTACT</h4>
+                        <div style="margin-bottom: 20px;">
+                            <p style="font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 5px;">Nova <span style="color: #0ea5e9;">Hospital</span></p>
+                            <p style="color: rgba(255,255,255,0.7);">+91 98765 43210</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px; color: rgba(255,255,255,0.7);">
+                            <p>info@novahospital.com</p>
+                            <p>appointments@novahospital.com</p>
+                        </div>
+                        
+                        <div class="contact-address" style="display: flex; gap: 10px; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                            <i class="fas fa-map-marker-alt" style="color: #0ea5e9; margin-top: 4px;"></i>
+                            <p>Nova Hospital, Noorpur - Amroha Rd,<br>Village Milak, Badshahpur, Naugawan<br>Sadat, Uttar Pradesh</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-new">
+                <p>&copy; 2026 Nova Hospital Multi Speciality Hospital.</p>
+                <p>Design by Himalya NextGen Technologies Pvt. Ltd.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            const container = document.getElementById('details-container');
+            
+            if (id && hospitalData && hospitalData[id]) {
+                const data = hospitalData[id];
+                document.title = data.title + ' | Nova Hospital';
+                
+                // Build Scope List HTML
+                let scopeHtml = '';
+                data.scope.forEach(item => {
+                    scopeHtml += \`
+                        <li class="scope-item" style="display: flex; align-items: flex-start; gap: 8px;">
+                            <i class="fas fa-circle" style="font-size: 6px; color: var(--primary-blue); margin-top: 8px;"></i> 
+                            <span>\${item}</span>
+                        </li>\`;
+                });
+
+                container.innerHTML = \`
+                    <section class="details-hero" style="position: relative; min-height: 45vh; overflow: hidden; background-image: url('\${data.image}'); background-size: cover; background-position: center;">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--dark-900) 0%, rgba(11, 15, 25, 0.7) 50%, transparent 100%);"></div>
+                        <div class="section-container" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 60px; padding-top: 120px; min-height: 45vh;">
+                            <a href="index.html#\${data.category === 'SERVICES' ? 'services' : 'departments'}" class="back-btn" style="margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 30px; text-decoration: none; width: fit-content; font-size: 14px; transition: all 0.3s ease;">
+                                <i class="fas fa-arrow-left"></i> Back to \${data.category === 'SERVICES' ? 'Services' : 'Departments'}
+                            </a>
+                            <span style="display: inline-flex; align-items: center; border-radius: 30px; border: 1px solid rgba(14, 165, 233, 0.35); background: rgba(14, 165, 233, 0.1); padding: 4px 12px; font-size: 11px; text-transform: uppercase; color: #93c5fd; font-weight: 700; width: fit-content; letter-spacing: 0.1em; margin-bottom: 16px;">
+                                \${data.category}
+                            </span>
+                            <h1 style="font-size: 48px; font-weight: 700; color: #fff; line-height: 1.1; margin: 0; max-width: 800px;">\${data.title}</h1>
+                        </div>
+                    </section>
+                    
+                    <section class="details-content" style="padding: 80px 0; background: var(--dark-900); min-height: 50vh;">
+                        <div class="section-container details-grid-layout" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 48px;">
+                            <div class="content-left">
+                                <h2 style="font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 16px;">Overview</h2>
+                                <p style="color: rgba(255,255,255,0.7); font-size: 18px; line-height: 1.6; margin-bottom: 40px;">\${data.overview}</p>
+                                
+                                <h3 style="font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 16px;">Services & scope</h3>
+                                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; color: rgba(255,255,255,0.7); font-size: 16px;">
+                                    \${scopeHtml}
+                                </ul>
+                            </div>
+                            
+                            <div class="content-right">
+                                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 32px; backdrop-filter: blur(16px);">
+                                    <h3 style="color: #fff; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Book a consultation</h3>
+                                    <p style="color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.5; margin-bottom: 24px;">Speak with our specialists today. We will guide you through your treatment options and schedule an appointment at your convenience.</p>
+                                    
+                                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                                        <a href="index.html#contact" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, var(--primary-blue), #1e40af); color: #fff; text-decoration: none; padding: 14px 24px; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2);">Book Appointment</a>
+                                        <a href="index.html#\${data.category === 'SERVICES' ? 'services' : 'departments'}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; text-decoration: none; padding: 14px 24px; border-radius: 30px; font-weight: 600; transition: all 0.3s ease;">All \${data.category === 'SERVICES' ? 'services' : 'departments'}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                \`;
+            } else {
+                container.innerHTML = \`
+                    <section style="padding: 150px 0; text-align: center; background: var(--dark-900); min-height: 60vh;">
+                        <h1 style="color: #fff; font-size: 40px; margin-bottom: 16px;">Details Not Found</h1>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 32px;">The service or department you are looking for does not exist or the link is invalid.</p>
+                        <a href="index.html" class="cta-button primary large">Return to Home</a>
+                    </section>
+                \`;
+            }
+        });
+    </script>
+</body>
+</html>

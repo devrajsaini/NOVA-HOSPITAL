@@ -21,9 +21,10 @@
             <div class="particle"></div>
             <div class="particle"></div>
             <div class="particle"></div>
+            <div class="particle"></div>
         </div>
     </div>
-    
+
     <!-- Premium Header -->
     <header class="premium-header">
         <div class="header-container">
@@ -39,11 +40,11 @@
                 
                 <nav class="premium-nav">
                     <ul class="nav-links">
-                        <li><a href="#home" class="nav-link active">Home</a></li>
-                        <li><a href="#workflow" class="nav-link">Our Process</a></li>
-                        <li><a href="#doctors" class="nav-link">Doctors</a></li>
-                        <li><a href="#statistics" class="nav-link">About</a></li>
-                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                        <li><a href="#home" class="nav-link">HOME</a></li>
+                        <li><a href="#statistics" class="nav-link">ABOUT</a></li>
+                        <li><a href="#services" class="nav-link active">SERVICES</a></li>
+                        <li><a href="#departments" class="nav-link">DEPARTMENTS</a></li>
+                        <li><a href="#contact" class="nav-link">CONTACT</a></li>
                     </ul>
                 </nav>
                 
@@ -80,11 +81,7 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <div class="hero-badge">
-                        <i class="fas fa-star"></i>
-                        Nova Hospital - Premium Healthcare
-                    </div>
-                    
+
                     <h1 class="hero-title">
                         Healthcare for Good
                         <span class="gradient-text">Today. Tomorrow. Always</span>
@@ -99,10 +96,6 @@
                         <button class="cta-button primary large">
                             <i class="fas fa-calendar-check"></i>
                             Start Your Health Journey
-                        </button>
-                        <button class="cta-button secondary large">
-                            <i class="fas fa-play-circle"></i>
-                            Watch Our Story
                         </button>
                     </div>
                     
@@ -147,7 +140,7 @@
                     <div class="step-icon">
                         <i class="fas fa-user-plus"></i>
                     </div>
-                    <h3>Register & Book</h3>
+                    <h3>Register &amp; Book</h3>
                     <p>Book your appointment online or call us. Our system streamlines the registration process for your convenience.</p>
                 </div>
                 
@@ -156,7 +149,7 @@
                     <div class="step-icon">
                         <i class="fas fa-clipboard-check"></i>
                     </div>
-                    <h3>Consultation & Diagnosis</h3>
+                    <h3>Consultation &amp; Diagnosis</h3>
                     <p>Meet our expert specialists for comprehensive consultation and accurate diagnosis using advanced medical technology.</p>
                 </div>
                 
@@ -165,7 +158,7 @@
                     <div class="step-icon">
                         <i class="fas fa-procedures"></i>
                     </div>
-                    <h3>Treatment & Care</h3>
+                    <h3>Treatment &amp; Care</h3>
                     <p>Receive personalized treatment plans with continuous monitoring and compassionate care from our medical team.</p>
                 </div>
                 
@@ -174,7 +167,7 @@
                     <div class="step-icon">
                         <i class="fas fa-heart"></i>
                     </div>
-                    <h3>Recovery & Follow-up</h3>
+                    <h3>Recovery &amp; Follow-up</h3>
                     <p>Complete recovery support with follow-up consultations, rehabilitation services, and ongoing health monitoring.</p>
                 </div>
             </div>
@@ -229,6 +222,147 @@
     </section>
 
     <!-- Expert Doctors Section -->
+    <!-- Departments Section -->
+    <section id="departments" class="departments-section">
+        <div class="section-container">
+            <div class="section-header centered">
+                <span class="section-badge">Filter by speciality</span>
+                <p class="section-description" style="color: var(--white); opacity: 0.7; margin-top: 10px;">each department includes scope of services, imagery, and care delivery details.</p>
+            </div>
+            
+            <div class="department-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="diagnostics">Diagnostics</button>
+                <button class="filter-btn" data-filter="surgery">Surgery</button>
+                <button class="filter-btn" data-filter="emergency">Emergency</button>
+                <button class="filter-btn" data-filter="specialty-care">Specialty Care</button>
+            </div>
+
+            <div class="departments-grid">
+                <!-- Cardiology Center (Featured) -->
+                <div class="dept-card featured" data-category="specialty-care" style="background-image: url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">SPECIALTY CARE</span>
+                        <h3 class="dept-title">Cardiology Center</h3>
+                        <p class="dept-desc">State-of-the-art cardiac care unit with advanced catheterization labs, cardiac ICU, and a dedicated heart failure management program.</p>
+                    </div>
+                    <a href="details.html?id=cardiology-center" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+
+                <!-- Neurology Institute -->
+                <div class="dept-card" data-category="specialty-care" style="background-image: url('https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">SPECIALTY CARE</span>
+                        <h3 class="dept-title">Neurology Institute</h3>
+                    </div>
+                    <a href="details.html?id=neurology-institute" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+                
+                <!-- Orthopedic Care Unit -->
+                <div class="dept-card" data-category="surgery" style="background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">SURGERY</span>
+                        <h3 class="dept-title">Orthopedic Care Unit</h3>
+                    </div>
+                    <a href="details.html?id=orthopedic-care" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+
+                <!-- Emergency Trauma Center -->
+                <div class="dept-card" data-category="emergency" style="background-image: url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">EMERGENCY</span>
+                        <h3 class="dept-title">Emergency Trauma Center</h3>
+                    </div>
+                    <a href="details.html?id=emergency-trauma" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+
+                <!-- Advanced Diagnostic Lab -->
+                <div class="dept-card" data-category="diagnostics" style="background-image: url('https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">DIAGNOSTICS</span>
+                        <h3 class="dept-title">Advanced Diagnostic Lab</h3>
+                    </div>
+                    <a href="details.html?id=advanced-diagnostics" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+
+                <!-- Cancer Care Center -->
+                <div class="dept-card" data-category="specialty-care" style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">SPECIALTY CARE</span>
+                        <h3 class="dept-title">Cancer Care Center</h3>
+                    </div>
+                    <a href="details.html?id=cancer-care" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+
+                <!-- Women's Health Department -->
+                <div class="dept-card" data-category="specialty-care" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">SPECIALTY CARE</span>
+                        <h3 class="dept-title">Women's Health Department</h3>
+                    </div>
+                    <a href="details.html?id=womens-health" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+
+                <!-- Pediatric Care Center -->
+                <div class="dept-card" data-category="specialty-care" style="background-image: url('https://images.unsplash.com/photo-1632833239869-a37e3a5806d2?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">SPECIALTY CARE</span>
+                        <h3 class="dept-title">Pediatric Care Center</h3>
+                    </div>
+                    <a href="details.html?id=pediatric-care" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+
+                <!-- Surgical Excellence Unit -->
+                <div class="dept-card" data-category="surgery" style="background-image: url('https://images.unsplash.com/photo-1551076805-e1869043e560?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">SURGERY</span>
+                        <h3 class="dept-title">Surgical Excellence Unit</h3>
+                    </div>
+                    <a href="details.html?id=surgical-excellence" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+
+                <!-- Radiology & Imaging Center -->
+                <div class="dept-card" data-category="diagnostics" style="background-image: url('https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80');">
+                    <div class="dept-overlay"></div>
+                    <div class="dept-content">
+                        <span class="dept-category">DIAGNOSTICS</span>
+                        <h3 class="dept-title">Radiology & Imaging Center</h3>
+                    </div>
+                    <a href="details.html?id=radiology-imaging-center" class="dept-details-btn">
+                        <i class="fas fa-arrow-right"></i> Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="doctors" class="expert-doctors-section">
         <div class="section-container">
             <div class="section-header centered">
@@ -274,7 +408,6 @@
                     </div>
                 </div>
 
-
                 <!-- Dr. Amir Khan - Orthopedic Surgeon -->
                 <div class="doctor-card-premium">
                     <div class="doctor-image-container">
@@ -304,8 +437,6 @@
                         </button>
                     </div>
                 </div>
-
-
 
                 <!-- Dr. Vikram Singh - General Surgeon -->
                 <div class="doctor-card-premium">
@@ -350,7 +481,7 @@
                     </div>
                     <div class="doctor-info">
                         <h3>Dr. Meera Jain</h3>
-                        <p class="doctor-specialty">Gynecologist & Obstetrician</p>
+                        <p class="doctor-specialty">Gynecologist &amp; Obstetrician</p>
                         <div class="doctor-credentials">
                             <span class="credential">MBBS, MD (Gynecology)</span>
                             <span class="experience">13+ Years Experience</span>
@@ -410,7 +541,7 @@
                     </div>
                     <div class="doctor-info">
                         <h3>Dr. Kavita Sharma</h3>
-                        <p class="doctor-specialty">Dermatologist & Cosmetologist</p>
+                        <p class="doctor-specialty">Dermatologist &amp; Cosmetologist</p>
                         <div class="doctor-credentials">
                             <span class="credential">MBBS, MD (Dermatology)</span>
                             <span class="experience">10+ Years Experience</span>
@@ -426,8 +557,9 @@
                         </button>
                     </div>
                 </div>
+
             </div>
-            
+
             <!-- Doctors CTA -->
             <div class="doctors-cta-section">
                 <div class="cta-content-premium">
@@ -443,6 +575,85 @@
                             Call: 9105106999
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="section-container">
+            <div class="section-header centered">
+                <span class="section-badge">Our Services</span>
+                <h2 class="section-title">Specialized medical care for every need</h2>
+                <p class="section-description">Comprehensive healthcare across 15+ departments—delivered by expert specialists using the latest medical technology with a patient‑first approach.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Cardiology</h3>
+                    <p>Comprehensive cardiac care from diagnosis to intervention, managed by experienced cardiologists and cardiac surgeons.</p>
+                    <ul>
+                        <li>Interventional cardiology and catheterization lab</li>
+                        <li>Cardiac ICU with round‑the‑clock monitoring</li>
+                        <li>Non‑invasive diagnostics: ECG, Echo, Stress Test</li>
+                        <li>Heart failure management and rehabilitation</li>
+                    </ul>
+                    <a href="details.html?id=cardiology" class="service-details-link"><i class="fas fa-arrow-right"></i> View Details</a>
+                </div>
+                <div class="service-card">
+                    <h3>Neurology</h3>
+                    <p>Advanced neurological care for brain, spine, and nervous system disorders with cutting‑edge diagnostics and treatment options.</p>
+                    <ul>
+                        <li>Stroke management and cerebrovascular care</li>
+                        <li>Epilepsy monitoring and seizure management</li>
+                        <li>Neuro‑rehabilitation and physiotherapy</li>
+                        <li>Advanced neuro‑imaging: MRI and CT angiography</li>
+                    </ul>
+                    <a href="details.html?id=neurology" class="service-details-link"><i class="fas fa-arrow-right"></i> View Details</a>
+                </div>
+                <div class="service-card">
+                    <h3>Orthopedics</h3>
+                    <p>Expert orthopedic care covering joint replacements, trauma, sports injuries, and complex spine surgeries.</p>
+                    <ul>
+                        <li>Total hip, knee, and shoulder replacements</li>
+                        <li>Sports injury diagnosis and surgical repair</li>
+                        <li>Minimally invasive spine surgery</li>
+                        <li>Orthopedic trauma and fracture management</li>
+                    </ul>
+                    <a href="details.html?id=orthopedics" class="service-details-link"><i class="fas fa-arrow-right"></i> View Details</a>
+                </div>
+                <div class="service-card">
+                    <h3>Pediatrics</h3>
+                    <p>Dedicated child‑centered care from newborns to adolescents in a warm, child‑friendly environment.</p>
+                    <ul>
+                        <li>Neonatal ICU (NICU) for premature and sick newborns</li>
+                        <li>Pediatric intensive care unit (PICU)</li>
+                        <li>Developmental pediatrics and child neurology</li>
+                        <li>Childhood vaccinations and preventive care</li>
+                    </ul>
+                    <a href="details.html?id=pediatric-care" class="service-details-link"><i class="fas fa-arrow-right"></i> View Details</a>
+                </div>
+                <div class="service-card">
+                    <h3>Radiology</h3>
+                    <p>NABL‑accredited imaging and interventional radiology services using the most advanced equipment available.</p>
+                    <ul>
+                        <li>3T MRI and 128‑slice CT scanning</li>
+                        <li>PET‑CT for oncology and metabolic imaging</li>
+                        <li>Digital X‑ray and ultrasound services</li>
+                        <li>Interventional radiology procedures</li>
+                    </ul>
+                    <a href="details.html?id=radiology-imaging-center" class="service-details-link"><i class="fas fa-arrow-right"></i> View Details</a>
+                </div>
+                <div class="service-card">
+                    <h3>Emergency Care</h3>
+                    <p>24/7 emergency and trauma services with fully equipped resuscitation bays and rapid‑response specialist teams.</p>
+                    <ul>
+                        <li>24/7 emergency and trauma center</li>
+                        <li>Dedicated resuscitation and shock management</li>
+                        <li>Emergency surgery and critical care support</li>
+                        <li>Ambulance services and pre‑hospital care</li>
+                    </ul>
+                    <a href="details.html?id=emergency-care" class="service-details-link"><i class="fas fa-arrow-right"></i> View Details</a>
                 </div>
             </div>
         </div>
@@ -586,7 +797,7 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <div class="contact-details-premium">
-                        <h4>Emergency & Appointments</h4>
+                        <h4>Emergency &amp; Appointments</h4>
                         <p>24/7 Emergency Services<br>General Appointments Available</p>
                         <button class="contact-action-btn" onclick="window.open('tel:9105106999')">
                             <i class="fas fa-phone"></i>
@@ -615,63 +826,68 @@
     <!-- Footer -->
     <footer class="premium-footer">
         <div class="footer-container">
-            <div class="footer-content">
+            <div class="footer-trusted">
+                TRUSTED BY 50,000+ PATIENTS · 250+ DOCTORS & SPECIALISTS
+            </div>
+            
+            <div class="footer-content-new">
                 <div class="footer-brand">
                     <div class="footer-logo">
                         <div class="professional-logo-container footer-logo-size">
                             <img src="logo.jpeg" alt="Nova Hospital Logo" class="professional-logo">
                         </div>
                         <div class="brand-info">
-                            <h3>Nova Hospital</h3>
+                            <h3 style="font-size: 20px; font-weight: 700;">Nova <span style="color: #0ea5e9;">Hospital</span></h3>
+                            <p class="brand-subtitle" style="font-size: 12px; opacity: 0.7; margin-top: 5px;">Multi Speciality Hospital</p>
                         </div>
                     </div>
-                    <p class="footer-description">
-                        Leading healthcare facility providing comprehensive medical services with 
-                        state-of-the-art technology and expert medical professionals.
-                    </p>
                 </div>
                 
-                <div class="footer-links">
+                <div class="footer-links-grid">
                     <div class="footer-section">
-                        <h4>Quick Links</h4>
+                        <h4>QUICK LINKS</h4>
                         <ul>
                             <li><a href="#home">Home</a></li>
-                            <li><a href="#doctors">Doctors</a></li>
-                            <li><a href="#workflow">Our Process</a></li>
+                            <li><a href="#statistics">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#departments">Departments</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-section">
-                        <h4>Medical Services</h4>
+                        <h4>DEPARTMENTS</h4>
                         <ul>
-                            <li><a href="#services">Emergency Care</a></li>
-                            <li><a href="#services">Cardiology</a></li>
-                            <li><a href="#services">Neurology</a></li>
-                            <li><a href="#services">Orthopedics</a></li>
+                            <li><a href="details.html?id=cardiology-center">Cardiology</a></li>
+                            <li><a href="details.html?id=neurology-institute">Neurology</a></li>
+                            <li><a href="details.html?id=orthopedic-care">Orthopedics</a></li>
+                            <li><a href="details.html?id=emergency-trauma">Emergency Care</a></li>
                         </ul>
                     </div>
                     
-                    <div class="footer-section">
-                        <h4>Contact Info</h4>
-                        <ul>
-                            <li><span>Noorpur - Amroha Road</span></li>
-                            <li><span>Village Milak, Badshahpur</span></li>
-                            <li><span>Emergency: 9105106999</span></li>
-                            <li><span>24/7 Available</span></li>
-                        </ul>
+                    <div class="footer-section contact-section">
+                        <h4>CONTACT</h4>
+                        <div style="margin-bottom: 20px;">
+                            <p style="font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 5px;">Nova <span style="color: #0ea5e9;">Hospital</span></p>
+                            <p style="color: rgba(255,255,255,0.7);">+91 98765 43210</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px; color: rgba(255,255,255,0.7);">
+                            <p>info@novahospital.com</p>
+                            <p>appointments@novahospital.com</p>
+                        </div>
+                        
+                        <div class="contact-address" style="display: flex; gap: 10px; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                            <i class="fas fa-map-marker-alt" style="color: #0ea5e9; margin-top: 4px;"></i>
+                            <p>Nova Hospital, Noorpur - Amroha Rd,<br>Village Milak, Badshahpur, Naugawan<br>Sadat, Uttar Pradesh</p>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2026 HIMALYA NEXTGEN Technologies PVT LTD. All rights reserved.</p>
-                    <div class="footer-emergency">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>Emergency: 9105106999</span>
-                    </div>
-                </div>
+            <div class="footer-bottom-new">
+                <p>&copy; 2026 Nova Hospital Multi Speciality Hospital.</p>
+                <p>Design by Himalya NextGen Technologies Pvt. Ltd.</p>
             </div>
         </div>
     </footer>

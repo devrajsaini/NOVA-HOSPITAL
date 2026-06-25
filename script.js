@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeDoctorInteractions();
     initializeFormInteractions();
     initializeSmoothScrolling();
+    initializeCustomCursor();
+    initializeDepartmentsFilter();
     
     console.log('🏥 Nova Hospital Premium Website Loaded Successfully!');
 });
@@ -486,8 +488,106 @@ function initializeSmoothScrolling() {
     });
 }
 
+// Custom Cursor Implementation
+function initializeCustomCursor() {
+    // Check if device supports hover (ignore touch screens)
+    if (window.matchMedia("(hover: none)").matches) return;
+
+    const cursorDot = document.createElement('div');
+    cursorDot.className = 'custom-cursor-dot';
+    document.body.appendChild(cursorDot);
+
+    const cursorOutline = document.createElement('div');
+    cursorOutline.className = 'custom-cursor-outline';
+    document.body.appendChild(cursorOutline);
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let outlineX = 0;
+    let outlineY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+    });
+
+    function animate() {
+        let distX = mouseX - outlineX;
+        let distY = mouseY - outlineY;
+        
+        outlineX = outlineX + (distX * 0.15);
+        outlineY = outlineY + (distY * 0.15);
+        
+        cursorOutline.style.left = `${outlineX}px`;
+        cursorOutline.style.top = `${outlineY}px`;
+        
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    const hoverElements = document.querySelectorAll('a, button, .nav-link, .cta-button, .service-card, .doctor-card-premium, .stat-card-premium');
+    
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('hover');
+            cursorOutline.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('hover');
+            cursorOutline.classList.remove('hover');
+        });
+    });
+}
+
+// Departments Filter Implementation
+function initializeDepartmentsFilter() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const deptCards = document.querySelectorAll('.dept-card');
+
+    if (!filterBtns.length || !deptCards.length) return;
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            deptCards.forEach(card => {
+                // Remove featured styling to normalize grid when filtering
+                if (filterValue !== 'all') {
+                    card.classList.remove('featured');
+                } else if (card.querySelector('.dept-title').textContent === 'Cardiology Center') {
+                    // Re-add featured to Cardiology Center if "All" is selected
+                    card.classList.add('featured');
+                }
+
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.classList.remove('hidden');
+                    // Small delay for animation
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        card.classList.add('hidden');
+                    }, 400); // Matches CSS transition duration
+                }
+            });
+        });
+    });
+}
+
 console.log('🎨 Premium Nova Hospital Website Fully Loaded!');
-console.log('✨ Features: Light pink theme, WhatsApp integration, mobile responsive, auto-directions');
+console.log('✨ Features: Dark theme, WhatsApp integration, mobile responsive, auto-directions');
 // ========================================
 // ADVANCED ANIMATION CONTROLLER
 // ========================================
@@ -655,26 +755,115 @@ class AnimationController {
     // Particle effects enhancement
     setupParticleEffects() {
         document.addEventListener('DOMContentLoaded', () => {
-            const createParticle = () => {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                
-                const particles = document.querySelector('.floating-particles');
-                if (particles) {
-                    particles.appendChild(particle);
-                    
-                    // Remove particle after animation
-                    setTimeout(() => {
-                        particle.remove();
-                    }, 25000);
+            const canvas = document.getElementById('bg-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            let particles = [];
+            let particleCount = 85;
+            const connectionDistance = 125;
+            let mouse = { x: null, y: null, radius: 160 };
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                if (window.innerWidth < 768) {
+                    particleCount = 35;
+                } else {
+                    particleCount = 85;
                 }
-            };
-
-            // Create particles periodically
-            setInterval(createParticle, 3000);
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+            
+            window.addEventListener('mouseleave', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.4;
+                    this.vy = (Math.random() - 0.5) * 0.4;
+                    this.radius = Math.random() * 1.5 + 1;
+                    this.color = 'rgba(14, 165, 233, 0.4)';
+                }
+                
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    
+                    if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                    if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+                    
+                    if (mouse.x !== null) {
+                        const dx = this.x - mouse.x;
+                        const dy = this.y - mouse.y;
+                        const dist = Math.hypot(dx, dy);
+                        if (dist < mouse.radius) {
+                            const force = (mouse.radius - dist) / mouse.radius;
+                            const angle = Math.atan2(dy, dx);
+                            this.x += Math.cos(angle) * force * 1.5;
+                            this.y += Math.sin(angle) * force * 1.5;
+                        }
+                    }
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+            }
+            
+            function init() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            init();
+            
+            function connect() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.hypot(dx, dy);
+                        
+                        if (dist < connectionDistance) {
+                            const alpha = (1 - dist / connectionDistance) * 0.12;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(14, 165, 233, ${alpha})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                
+                connect();
+                requestAnimationFrame(animate);
+            }
+            animate();
         });
     }
 
@@ -764,16 +953,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize animation controller
     new AnimationController();
 
-    // Add typing animation to hero badge
-    const heroBadge = document.querySelector('.hero-badge');
-    if (heroBadge) {
-        const typeWriter = new TypeWriter(heroBadge, [
-            '⭐ Nova Hospital - Premium Healthcare',
-            '🏥 Excellence in Medical Care',
-            '❤️ Compassionate Healthcare Service',
-            '🌟 Advanced Medical Technology'
-        ], 4000);
-    }
+    // Typing animation removed from hero badge as requested
 
     // Add smooth scrolling to navigation links
     const navLinks = document.querySelectorAll('.nav-link');
@@ -1228,7 +1408,7 @@ class CursorEffects {
 document.addEventListener('DOMContentLoaded', () => {
     // Only initialize on desktop
     if (window.innerWidth > 768) {
-        const cursor = new CustomCursor();
+        // const cursor = new CustomCursor(); // Disabled because it conflicts with initializeCustomCursor()
         
         // Add magnetic effect to important buttons
         const importantButtons = document.querySelectorAll('.cta-button.primary, .doctor-cta-btn');
@@ -1286,3 +1466,504 @@ trailStyle.textContent = `
 }
 `;
 document.head.appendChild(trailStyle);
+// ========================================
+// ANIMATED SERVICES TEXT CONTROLLER
+// ========================================
+
+class AnimatedServicesText {
+    constructor() {
+        this.textItems = document.querySelectorAll('.service-text-item');
+        this.currentIndex = 0;
+        this.animationDuration = 1000; // Duration each text stays visible
+        this.transitionDuration = 500;  // Fade transition duration
+        this.totalCycleDuration = this.textItems.length * (this.animationDuration + this.transitionDuration);
+        
+        this.init();
+    }
+
+    init() {
+        if (this.textItems.length === 0) return;
+        
+        // Start the animation cycle
+        this.startAnimation();
+        
+        // Add enhanced effects
+        this.addParticleEffects();
+        this.addSoundEffects();
+    }
+
+    startAnimation() {
+        // Set initial state
+        this.textItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translate(-50%, -50%) translateY(50px)';
+        });
+
+        // Start the continuous cycle
+        this.runCycle();
+        
+        // Repeat the cycle
+        setInterval(() => {
+            this.runCycle();
+        }, this.totalCycleDuration);
+    }
+
+    runCycle() {
+        this.textItems.forEach((item, index) => {
+            // Calculate when this item should appear
+            const delay = index * (this.animationDuration + this.transitionDuration);
+            
+            setTimeout(() => {
+                this.showText(item, index);
+                
+                // Hide text after duration
+                setTimeout(() => {
+                    this.hideText(item);
+                }, this.animationDuration);
+                
+            }, delay);
+        });
+    }
+
+    showText(item, index) {
+        // Add entrance animation
+        item.style.opacity = '1';
+        item.style.transform = 'translate(-50%, -50%) translateY(0px)';
+        item.classList.add('active', 'glowing');
+        
+        // Add directional slide effects
+        if (index % 2 === 0) {
+            item.classList.add('slide-from-left');
+        } else {
+            item.classList.add('slide-from-right');
+        }
+        
+        // Create particle burst effect
+        this.createParticleBurst(item);
+        
+        // Add typing effect for certain items
+        if (index === 0) { // Medical Services gets typing effect
+            item.classList.add('typing-effect');
+        }
+    }
+
+    hideText(item) {
+        // Add exit animation
+        item.style.opacity = '0';
+        item.style.transform = 'translate(-50%, -50%) translateY(-50px)';
+        item.classList.remove('active', 'glowing', 'slide-from-left', 'slide-from-right', 'typing-effect');
+        item.classList.add('fade-out');
+        
+        // Clean up classes after animation
+        setTimeout(() => {
+            item.classList.remove('fade-out');
+        }, this.transitionDuration);
+    }
+
+    createParticleBurst(textElement) {
+        const rect = textElement.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // Create multiple particles
+        for (let i = 0; i < 8; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'text-particle';
+            particle.style.cssText = `
+                position: fixed;
+                left: ${centerX}px;
+                top: ${centerY}px;
+                width: 6px;
+                height: 6px;
+                background: linear-gradient(45deg, #ec4899, #667eea);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                animation: particleBurst 1s ease-out forwards;
+                transform-origin: center;
+                --angle: ${(360 / 8) * i}deg;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => particle.remove(), 1000);
+        }
+    }
+
+    addParticleEffects() {
+        // Add CSS for particle burst animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes particleBurst {
+                0% {
+                    opacity: 1;
+                    transform: rotate(var(--angle)) translateX(0px) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: rotate(var(--angle)) translateX(100px) scale(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    addSoundEffects() {
+        // Create subtle sound effects (optional)
+        this.textItems.forEach((item, index) => {
+            item.addEventListener('animationstart', () => {
+                // You can add Web Audio API sounds here
+                this.playTextSound(index);
+            });
+        });
+    }
+
+    playTextSound(index) {
+        // Web Audio API for subtle sound effects
+        if ('AudioContext' in window || 'webkitAudioContext' in window) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // Different frequencies for different services
+            const frequencies = [220, 246, 261, 293, 329, 349, 392, 440];
+            oscillator.frequency.setValueAtTime(frequencies[index], audioContext.currentTime);
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.1);
+            gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.3);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        }
+    }
+}
+
+// Enhanced scroll-based text animation
+class ScrollBasedTextAnimation {
+    constructor() {
+        this.textItems = document.querySelectorAll('.service-text-item');
+        this.heroSection = document.querySelector('.premium-hero');
+        this.init();
+    }
+
+    init() {
+        window.addEventListener('scroll', () => {
+            this.handleScroll();
+        });
+    }
+
+    handleScroll() {
+        if (!this.heroSection) return;
+        
+        const rect = this.heroSection.getBoundingClientRect();
+        const scrollProgress = Math.max(0, Math.min(1, 1 - (rect.bottom / window.innerHeight)));
+        
+        // Animate text based on scroll progress
+        this.textItems.forEach((item, index) => {
+            const itemProgress = Math.max(0, Math.min(1, 
+                (scrollProgress - (index * 0.1)) * (1 / 0.1)
+            ));
+            
+            item.style.opacity = itemProgress;
+            item.style.transform = `translate(-50%, -50%) translateY(${(1 - itemProgress) * 50}px)`;
+        });
+    }
+}
+
+// Mouse interaction effects
+class MouseInteractionEffects {
+    constructor() {
+        this.textItems = document.querySelectorAll('.service-text-item');
+        this.init();
+    }
+
+    init() {
+        this.textItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                item.style.filter = 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translate(-50%, -50%) scale(1)';
+                item.style.filter = 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))';
+            });
+        });
+    }
+}
+
+// Initialize all text animations when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a moment for other animations to start
+    setTimeout(() => {
+        new AnimatedServicesText();
+        new ScrollBasedTextAnimation();
+        new MouseInteractionEffects();
+    }, 2000);
+    
+    // Add pause/resume functionality
+    let animationPaused = false;
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'p' || e.key === 'P') {
+            if (animationPaused) {
+                document.querySelectorAll('.service-text-item').forEach(item => {
+                    item.style.animationPlayState = 'running';
+                });
+                animationPaused = false;
+            } else {
+                document.querySelectorAll('.service-text-item').forEach(item => {
+                    item.style.animationPlayState = 'paused';
+                });
+                animationPaused = true;
+            }
+        }
+    });
+});
+// ========================================
+// EMERGENCY CARE FUNCTIONALITY
+// ========================================
+
+// Ambulance Request Function
+function requestAmbulance() {
+    // Show ambulance request modal/alert
+    const message = `🚨 AMBULANCE REQUEST 🚨\n\nWe are processing your ambulance request.\n\nFor immediate assistance, please call:\n📞 9105106999\n\nOur team will dispatch an ambulance to your location immediately.\n\nStay calm and provide the following information:\n• Your exact location\n• Nature of emergency\n• Patient's condition\n• Contact number\n\nHelp is on the way!`;
+    
+    alert(message);
+    
+    // Optional: Log emergency request
+    console.log('Emergency ambulance requested at:', new Date());
+    
+    // Optional: Send emergency request to WhatsApp
+    const emergencyMessage = encodeURIComponent(`🚨 EMERGENCY AMBULANCE REQUEST 🚨\n\nI need immediate ambulance assistance.\n\nPlease dispatch ambulance to my location.\n\nThis is a medical emergency.`);
+    const whatsappURL = `https://wa.me/919105106999?text=${emergencyMessage}`;
+    
+    // Ask user if they want to send WhatsApp message too
+    if (confirm('Would you like to send an emergency request via WhatsApp as well?')) {
+        window.open(whatsappURL, '_blank');
+    }
+}
+
+// Emergency Care Animation Controller
+class EmergencyAnimations {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.addScrollAnimations();
+        this.addHoverEffects();
+        this.addEmergencyAlerts();
+    }
+
+    addScrollAnimations() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -100px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe emergency section elements
+        const emergencyElements = document.querySelectorAll('.feature-item, .emergency-quote, .emergency-cta');
+        emergencyElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.1}s`;
+            observer.observe(element);
+        });
+    }
+
+    addHoverEffects() {
+        const featureItems = document.querySelectorAll('.feature-item');
+        featureItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const icon = item.querySelector('.feature-icon');
+                icon.style.transform = 'scale(1.1) rotate(5deg)';
+                icon.style.boxShadow = '0 8px 25px rgba(220, 38, 38, 0.4)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                const icon = item.querySelector('.feature-icon');
+                icon.style.transform = 'scale(1) rotate(0deg)';
+                icon.style.boxShadow = '0 0 10px rgba(220, 38, 38, 0.5)';
+            });
+        });
+    }
+
+    addEmergencyAlerts() {
+        // Add periodic emergency pulse to call button
+        const callButton = document.querySelector('.emergency-call-btn');
+        if (callButton) {
+            setInterval(() => {
+                callButton.style.animation = 'none';
+                setTimeout(() => {
+                    callButton.style.animation = 'emergencyCallPulse 2s infinite';
+                }, 100);
+            }, 10000); // Every 10 seconds
+        }
+    }
+}
+
+// Emergency Contact Quick Actions
+class EmergencyContacts {
+    constructor() {
+        this.emergencyNumber = '9105106999';
+        this.init();
+    }
+
+    init() {
+        // Add keyboard shortcut for emergency call
+        document.addEventListener('keydown', (e) => {
+            // Ctrl + E for emergency
+            if (e.ctrlKey && e.key === 'e') {
+                e.preventDefault();
+                this.makeEmergencyCall();
+            }
+            
+            // Ctrl + A for ambulance
+            if (e.ctrlKey && e.key === 'a') {
+                e.preventDefault();
+                requestAmbulance();
+            }
+        });
+
+        // Add emergency floating button (optional)
+        this.addEmergencyFloatingButton();
+    }
+
+    makeEmergencyCall() {
+        window.open(`tel:${this.emergencyNumber}`);
+    }
+
+    addEmergencyFloatingButton() {
+        // Create floating emergency button
+        const floatingBtn = document.createElement('div');
+        floatingBtn.className = 'floating-emergency-btn';
+        floatingBtn.innerHTML = `
+            <i class="fas fa-phone-alt"></i>
+            <span>Emergency</span>
+        `;
+        
+        floatingBtn.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: emergencyFloat 3s ease-in-out infinite;
+        `;
+
+        floatingBtn.addEventListener('click', () => {
+            this.makeEmergencyCall();
+        });
+
+        floatingBtn.addEventListener('mouseenter', () => {
+            floatingBtn.style.transform = 'scale(1.1)';
+            floatingBtn.style.boxShadow = '0 12px 35px rgba(220, 38, 38, 0.6)';
+        });
+
+        floatingBtn.addEventListener('mouseleave', () => {
+            floatingBtn.style.transform = 'scale(1)';
+            floatingBtn.style.boxShadow = '0 8px 25px rgba(220, 38, 38, 0.4)';
+        });
+
+        document.body.appendChild(floatingBtn);
+
+        // Add floating button animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes emergencyFloat {
+                0%, 100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Initialize Emergency Features
+document.addEventListener('DOMContentLoaded', () => {
+    new EmergencyAnimations();
+    new EmergencyContacts();
+    
+    // Add emergency section to navigation
+    const emergencySection = document.getElementById('emergency-care');
+    if (emergencySection) {
+        // Smooth scroll to emergency section
+        const createEmergencyLink = () => {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks && !document.querySelector('.emergency-nav-link')) {
+                const emergencyLink = document.createElement('li');
+                emergencyLink.innerHTML = `
+                    <a href="#emergency-care" class="nav-link emergency-nav-link">
+                        <i class="fas fa-ambulance"></i> Emergency
+                    </a>
+                `;
+                navLinks.insertBefore(emergencyLink, navLinks.children[1]);
+                
+                // Add emergency styling
+                const emergencyNavLink = emergencyLink.querySelector('.nav-link');
+                emergencyNavLink.style.color = '#dc2626';
+                emergencyNavLink.style.fontWeight = '700';
+            }
+        };
+        
+        setTimeout(createEmergencyLink, 1000);
+    }
+});
+
+// Emergency section specific animations
+const emergencyAnimationStyle = document.createElement('style');
+emergencyAnimationStyle.textContent = `
+    .animate-in {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    
+    .feature-item {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .emergency-quote {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .emergency-cta {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+`;
+document.head.appendChild(emergencyAnimationStyle);
